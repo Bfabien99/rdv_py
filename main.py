@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
+import uvicorn
 
 load_dotenv(override=True)
 
@@ -71,3 +72,6 @@ async def send_email(request: Request):
         return {"success": True, "message":"send mail"} #uvicorn main:app
     except Exception as e:
         return {"success": False, "message":str(e)} 
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
